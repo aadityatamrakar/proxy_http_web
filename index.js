@@ -2,6 +2,7 @@ var http = require('http'),
   connect = require('connect'),
   httpProxy = require('http-proxy');
 var fs = require('fs');
+var harmon = require('harmon');
 
 var script_to_load = fs.readFileSync('./script_to_load.js');
 
@@ -23,7 +24,7 @@ var proxy = httpProxy.createProxyServer({
   changeOrigin: true
 })
 
-app.use(require('./node_modules/harmon/index')([], selects));
+app.use(harmon([], selects));
 
 app.use(
   function (req, res) {
